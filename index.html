@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahil Sawant — AI/ML Engineer</title>
+  <meta name="description" content="Sahil Sawant — AI/ML Engineer based in Buffalo, NY. Building agentic AI and applied ML that ships: RAG, multi-agent orchestration, and ML systems, with the evaluation and deployment to back them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+
+  <!-- ── PILL NAV ── -->
+  <nav class="pill-nav" id="pillNav" aria-label="Main navigation">
+    <ul class="pill-nav-links" role="list">
+      <li><a href="#about"        class="pill-nav-link" data-section="about">Home</a></li>
+      <li><a href="#about"        class="pill-nav-link">About</a></li>
+      <li><a href="#skills"       class="pill-nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#experience"   class="pill-nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#projects"     class="pill-nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#education"    class="pill-nav-link" data-section="education">Education</a></li>
+      <li><a href="#achievements" class="pill-nav-link" data-section="achievements">Achievements</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── THEME TOGGLE ── -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+    <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+    <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <!-- ── HERO + ABOUT ── -->
+  <section class="hero" id="about" aria-label="Introduction and about">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-content">
+      <div class="hero-inner">
+
+        <!-- Left: text + about -->
+        <div class="hero-left">
+          <p class="hero-eyebrow mono">AI / ML Engineer</p>
+          <h1 class="hero-name">Sahil<br />Sawant</h1>
+          <p class="hero-about-para">
+            AI/ML Engineer with early-career experience building agentic AI systems and multi-agent orchestration.
+            Delivered production AI platforms including a PDF-to-KnowledgeGraph pipeline and a multi-agent troubleshooting platform,
+            leveraging LLM orchestration and graph-guided reasoning for real-time problem-solving and knowledge management.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-solid">View Projects</a>
+            <a href="assets/Sahil%20Sawant%20Resume.pdf" class="btn btn-outline" download="Sahil Sawant Resume.pdf" aria-label="Download resume PDF">Download Resume</a>
+          </div>
+          <div class="hero-chips">
+            <span class="chip">MS in AI · University at Buffalo</span>
+            <span class="chip">Based in Buffalo, NY</span>
+            <span class="chip">Open to AI Engineer roles</span>
+          </div>
+          <div class="hero-social" aria-label="Social profiles">
+            <a href="https://github.com/sahillarious" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub — sahillarious">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sahilsawant01/" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Sahil Sawant">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: photo -->
+        <div class="hero-right">
+          <div class="hero-photo-wrap">
+            <img src="assets/headshot.png" alt="Sahil Sawant" class="hero-photo" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- ── 01 SKILLS ── -->
+    <section class="section section-alt" id="skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">01</p>
+        <h2 class="section-title" id="skills-heading">Skills</h2>
+        <div class="skills-grid">
+
+          <div class="skill-group">
+            <h3 class="skill-group-label mono">Languages &amp; Libraries</h3>
+            <div class="skill-chips" role="list" aria-label="Languages and libraries">
+              <span class="tag" role="listitem">Python</span>
+              <span class="tag" role="listitem">PySpark</span>
+              <span class="tag" role="listitem">SQL / PL-SQL</span>
+              <span class="tag" role="listitem">TensorFlow</span>
+              <span class="tag" role="listitem">PyTorch</span>
+              <span class="tag" role="listitem">Scikit-Learn</span>
+              <span class="tag" role="listitem">Pandas</span>
+              <span class="tag" role="listitem">NumPy</span>
+              <span class="tag" role="listitem">SciPy</span>
+              <span class="tag" role="listitem">Matplotlib</span>
+              <span class="tag" role="listitem">Seaborn</span>
+              <span class="tag" role="listitem">spaCy</span>
+              <span class="tag" role="listitem">NLTK</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label mono">GenAI &amp; ML</h3>
+            <div class="skill-chips" role="list" aria-label="GenAI and ML">
+              <span class="tag" role="listitem">LangGraph</span>
+              <span class="tag" role="listitem">LangChain</span>
+              <span class="tag" role="listitem">RAG Systems</span>
+              <span class="tag" role="listitem">Agentic Workflows</span>
+              <span class="tag" role="listitem">MCP</span>
+              <span class="tag" role="listitem">Agent-to-Agent Communication</span>
+              <span class="tag" role="listitem">LLM Orchestration</span>
+              <span class="tag" role="listitem">Prompt Engineering</span>
+              <span class="tag" role="listitem">Hugging Face</span>
+              <span class="tag" role="listitem">CNNs</span>
+              <span class="tag" role="listitem">RNNs</span>
+              <span class="tag" role="listitem">LSTMs</span>
+              <span class="tag" role="listitem">Transformers</span>
+              <span class="tag" role="listitem">Supervised &amp; Unsupervised Learning</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label mono">MLOps &amp; Deployment</h3>
+            <div class="skill-chips" role="list" aria-label="MLOps and deployment">
+              <span class="tag" role="listitem">Amazon SageMaker</span>
+              <span class="tag" role="listitem">SageMaker Model Monitor</span>
+              <span class="tag" role="listitem">CI/CD (GitHub Actions)</span>
+              <span class="tag" role="listitem">Model Deployment</span>
+              <span class="tag" role="listitem">Model Monitoring / Drift Detection</span>
+              <span class="tag" role="listitem">Model Versioning</span>
+              <span class="tag" role="listitem">Streamlit</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label mono">Backend &amp; Frontend</h3>
+            <div class="skill-chips" role="list" aria-label="Backend and frontend">
+              <span class="tag" role="listitem">FastAPI</span>
+              <span class="tag" role="listitem">Node.js</span>
+              <span class="tag" role="listitem">React</span>
+              <span class="tag" role="listitem">Socket.IO</span>
+              <span class="tag" role="listitem">REST APIs</span>
+              <span class="tag" role="listitem">Git</span>
+              <span class="tag" role="listitem">Linux/Unix</span>
+            </div>
+          </div>
+
+          <div class="skill-group skill-group-wide">
+            <h3 class="skill-group-label mono">Databases &amp; Cloud</h3>
+            <div class="skill-chips" role="list" aria-label="Databases and cloud">
+              <span class="tag" role="listitem">Neo4j</span>
+              <span class="tag" role="listitem">Qdrant</span>
+              <span class="tag" role="listitem">Pinecone</span>
+              <span class="tag" role="listitem">DuckDB</span>
+              <span class="tag" role="listitem">AWS</span>
+              <span class="tag" role="listitem">GCP</span>
+              <span class="tag" role="listitem">Azure</span>
+              <span class="tag" role="listitem">Docker</span>
+              <span class="tag" role="listitem">Apache Spark</span>
+              <span class="tag" role="listitem">Oracle EBS</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 02 EXPERIENCE ── -->
+    <section class="section" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">02</p>
+        <h2 class="section-title" id="experience-heading">Experience</h2>
+        <div class="timeline">
+
+          <!-- Arta Support -->
+          <article class="timeline-card" aria-labelledby="exp-arta-title">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <header class="timeline-header">
+                <div class="timeline-meta">
+                  <h3 class="timeline-role" id="exp-arta-title">AI Engineer</h3>
+                  <p class="timeline-org">Arta Support</p>
+                </div>
+                <div class="timeline-details">
+                  <span class="mono muted timeline-location">Remote</span>
+                  <span class="mono muted timeline-dates">Mar 2026 – May 2026</span>
+                </div>
+              </header>
+              <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
+                <li>Scaled a prototype multi-agent troubleshooting system into an enterprise platform serving four distinct roles, delivering real-time graph-guided responses at ~30s average latency.</li>
+                <li>Engineered a graph-guided agentic RAG system combining Pinecone with Neo4j, improving retrieval precision by 30% and reducing knowledge base update time through a PDF-to-Knowledge-Graph pipeline.</li>
+                <li>Designed Text-to-Cypher query prompts for creating graph schemas to enable multi-hop traversal over entities and relationships.</li>
+                <li>Deployed a full-stack user authentication and API key management system using AWS (Cognito, DynamoDB, and KMS), adding admin approval workflows, role-based dashboards, and self-serve API key rotation.</li>
+                <li>Built token-accounting infrastructure to meter per-user and per-model LLM token usage across AWS EC2 hosted services, enabling cross-region budget controls.</li>
+              </ul>
+              <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">LangGraph</span>
+                <span class="tag tag-sm">Neo4j</span>
+                <span class="tag tag-sm">Pinecone</span>
+                <span class="tag tag-sm">AWS Cognito</span>
+                <span class="tag tag-sm">DynamoDB</span>
+                <span class="tag tag-sm">KMS</span>
+                <span class="tag tag-sm">EC2</span>
+                <span class="tag tag-sm">FastAPI</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- UB Research -->
+          <article class="timeline-card" aria-labelledby="exp-ub-title">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <header class="timeline-header">
+                <div class="timeline-meta">
+                  <h3 class="timeline-role" id="exp-ub-title">Graduate Research Assistant</h3>
+                  <p class="timeline-org">University at Buffalo</p>
+                </div>
+                <div class="timeline-details">
+                  <span class="mono muted timeline-location">Buffalo, NY</span>
+                  <span class="mono muted timeline-dates">Aug 2025 – Dec 2025</span>
+                </div>
+              </header>
+              <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
+                <li>Developed a vision-guided object-following system for the Unitree Go2 quadruped robot, achieving 48ms latency and 90%+ target tracking success in indoor environments.</li>
+                <li>Created a voice AI pipeline for the robot using Whisper STT and a regex-based NLP parser dispatching commands over SSH to the on-robot execution loop, supporting 20+ distinct behaviors.</li>
+                <li>Trained a perception pipeline using a quantized YOLOv8n model deployed on Jetson Nano, on a custom-annotated dataset with geometric and photometric augmentations, achieving mAP@0.5 of 0.995.</li>
+              </ul>
+              <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">YOLOv8n</span>
+                <span class="tag tag-sm">Jetson Nano</span>
+                <span class="tag tag-sm">Whisper STT</span>
+                <span class="tag tag-sm">RealSense</span>
+                <span class="tag tag-sm">Computer Vision</span>
+                <span class="tag tag-sm">SSH</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Capgemini -->
+          <article class="timeline-card" aria-labelledby="exp-cap-title">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <header class="timeline-header">
+                <div class="timeline-meta">
+                  <h3 class="timeline-role" id="exp-cap-title">Analyst</h3>
+                  <p class="timeline-org">Capgemini</p>
+                </div>
+                <div class="timeline-details">
+                  <span class="mono muted timeline-location">Mumbai, India</span>
+                  <span class="mono muted timeline-dates">Dec 2022 – May 2024</span>
+                </div>
+              </header>
+              <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
+                <li>Managed job scheduling and deployment pipelines using AppWorx, monitoring 30+ workflow chains per shift across 24-hour rotating operations, promoting chains across Dev, QA, and Production and coordinating cross-team notifications for aborts and crashes to maintain continuous pipeline availability.</li>
+                <li>Replaced manual data-handling workflows with optimized PL/SQL packages and stored procedures across Oracle EBS modules, reducing manual intervention by 35% and improving run consistency.</li>
+                <li>Performed data reconciliation and validation across EBS batch loads, identifying and correcting data discrepancies before they propagated into dependent job chains.</li>
+              </ul>
+              <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">Oracle EBS</span>
+                <span class="tag tag-sm">PL/SQL</span>
+                <span class="tag tag-sm">AppWorx</span>
+                <span class="tag tag-sm">SQL</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 03 PROJECTS ── -->
+    <section class="section section-alt" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">03</p>
+        <h2 class="section-title" id="projects-heading">Projects</h2>
+        <div class="projects-grid">
+
+          <article class="project-card" aria-labelledby="proj-bolt-title">
+            <div class="project-card-inner">
+              <div class="project-header">
+                <span class="project-number mono" aria-hidden="true">01</span>
+                <div class="project-links" aria-label="Project links">
+                  <a href="https://github.com/sahillarious/BOLT" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub" class="project-link-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-title" id="proj-bolt-title"><a href="project-bolt.html" class="project-title-link">B.O.L.T – Behavioral Object Locomotion &amp; Tracking <span class="project-title-arrow" aria-hidden="true">↗</span></a></h3>
+              <p class="project-subtitle">Real-time object tracking and voice control on a Unitree Go2</p>
+              <p class="project-desc">
+                Real-time object detection and tracking with a custom-trained YOLOv8 model and Intel RealSense depth
+                estimation on a Jetson edge device, using a finite-state-machine controller for closed-loop following.
+                Extended with a Whisper-based voice control pipeline supporting 20+ spoken commands.
+              </p>
+              <div class="project-tags" aria-label="Technologies">
+                <span class="tag tag-sm">YOLOv8</span>
+                <span class="tag tag-sm">CNN</span>
+                <span class="tag tag-sm">Computer Vision</span>
+                <span class="tag tag-sm">Whisper STT</span>
+                <span class="tag tag-sm">ROS/ROS2</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-buffalo-title">
+            <div class="project-card-inner">
+              <div class="project-header">
+                <span class="project-number mono" aria-hidden="true">02</span>
+                <div class="project-links" aria-label="Project links">
+                  <a href="https://github.com/sahillarious/Buffalo-Accident-Risk-Prediction-Resource-Allocation" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub" class="project-link-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-title" id="proj-buffalo-title"><a href="buffalo-accident-rl.html" class="project-title-link">Buffalo Accident Risk &amp; Resource Allocation <span class="project-title-arrow" aria-hidden="true">↗</span></a></h3>
+              <p class="project-subtitle">RL-based emergency dispatch across Buffalo, NY</p>
+              <p class="project-desc">
+                A PPO agent that learns optimal placement of Police, EMS, and DOT resources across a 145-cell grid of
+                Buffalo, NY, trained on ~10,000 annual traffic incidents from the city's Open Data Portal. The agent
+                reaches a reward of ~793 through strategic resource clustering, versus -8,170 to -8,230 for a random
+                baseline and ~-47,500 for a DQN agent.
+              </p>
+              <div class="project-tags" aria-label="Technologies">
+                <span class="tag tag-sm">PPO</span>
+                <span class="tag tag-sm">Reinforcement Learning</span>
+                <span class="tag tag-sm">PyTorch</span>
+                <span class="tag tag-sm">Actor-Critic</span>
+                <span class="tag tag-sm">Python</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-deepspeech-title">
+            <div class="project-card-inner">
+              <div class="project-header">
+                <span class="project-number mono" aria-hidden="true">03</span>
+                <div class="project-links" aria-label="Project links">
+                  <a href="https://github.com/sahillarious/DeepSpeech" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub" class="project-link-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-title" id="proj-deepspeech-title"><a href="deepspeech-therapy.html" class="project-title-link">DeepSpeech Therapy — Real-Time Voice AI Coach <span class="project-title-arrow" aria-hidden="true">↗</span></a></h3>
+              <p class="project-subtitle">Real-time speech assessment and feedback with a hierarchical deep learning pipeline</p>
+              <p class="project-desc">
+                A hierarchical deep learning pipeline for real-time speech therapy: a 1D convolutional autoencoder flags faulty
+                speech via MFCC reconstruction error (96.89% accuracy), while CNN+Attention, Transformer, and ResNet18 architectures
+                diagnose stuttering events like blocks and prolongations (F1 0.67–0.70). A GPT-4 virtual coach turns diagnoses into
+                context-aware feedback, deployed through Gradio.
+              </p>
+              <div class="project-tags" aria-label="Technologies">
+                <span class="tag tag-sm">PyTorch</span>
+                <span class="tag tag-sm">Autoencoders</span>
+                <span class="tag tag-sm">Transformers</span>
+                <span class="tag tag-sm">GPT-4</span>
+                <span class="tag tag-sm">Gradio</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-ml-pipeline-title">
+            <div class="project-card-inner">
+              <div class="project-header">
+                <span class="project-number mono" aria-hidden="true">04</span>
+                <div class="project-links" aria-label="Project links">
+                  <span class="project-link-placeholder mono muted">[TODO: GitHub]</span>
+                </div>
+              </div>
+              <h3 class="project-title" id="proj-ml-pipeline-title">End-to-End ML Pipeline — Job-Market Classification</h3>
+              <p class="project-subtitle">1.3M+ LinkedIn postings → real-time SageMaker endpoint</p>
+              <p class="project-desc">
+                Five-class job-category classifier at 87% accuracy built with PySpark on Databricks over 1.3M+ LinkedIn postings,
+                deployed as a real-time SageMaker endpoint with Model Monitor for data-drift detection.
+                GitHub Actions CI/CD automates retrain-and-redeploy with model versioning, validation gates, and a Streamlit prototype for interactive inference.
+              </p>
+              <div class="project-tags" aria-label="Technologies">
+                <span class="tag tag-sm">PySpark</span>
+                <span class="tag tag-sm">Databricks</span>
+                <span class="tag tag-sm">SageMaker</span>
+                <span class="tag tag-sm">GitHub Actions</span>
+                <span class="tag tag-sm">Streamlit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-dermai-title">
+            <div class="project-card-inner">
+              <div class="project-header">
+                <span class="project-number mono" aria-hidden="true">05</span>
+                <div class="project-links" aria-label="Project links">
+                  <a href="https://github.com/sahillarious/DermAI" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub" class="project-link-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-title" id="proj-dermai-title"><a href="dermai.html" class="project-title-link">DermAI — AI-Powered Dermatology Assistant <span class="project-title-arrow" aria-hidden="true">↗</span></a></h3>
+              <p class="project-subtitle">Ensemble vision classifier with GPT-4 diagnostic feedback on HAM10000</p>
+              <p class="project-desc">
+                An ensemble of ResNet50, DenseNet121, VGG-19, and EfficientNet-B0 classifying 7 skin lesion types on
+                the HAM10000 dataset, with SMOTE and class-weighted training to handle severe class imbalance (6,705 vs.
+                115 samples across classes). The ensemble reaches 0.94 precision / 0.93 F1, up from 0.87 F1 for a single
+                ResNet50 baseline. A GPT-4 feedback layer turns classifications into context-aware diagnostic explanations
+                via Gradio.
+              </p>
+              <div class="project-tags" aria-label="Technologies">
+                <span class="tag tag-sm">PyTorch</span>
+                <span class="tag tag-sm">ResNet50</span>
+                <span class="tag tag-sm">EfficientNet-B0</span>
+                <span class="tag tag-sm">SMOTE</span>
+                <span class="tag tag-sm">GPT-4</span>
+                <span class="tag tag-sm">Gradio</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 04 EDUCATION ── -->
+    <section class="section" id="education" aria-labelledby="education-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">04</p>
+        <h2 class="section-title" id="education-heading">Education</h2>
+        <div class="edu-list">
+
+          <article class="edu-card" aria-labelledby="edu-ms-title">
+            <div class="edu-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 2L2 6.5V8h16V6.5L10 2z" fill="currentColor" opacity="0.6"/>
+                <path d="M4 9v6a6 6 0 0012 0V9H4z" fill="currentColor" opacity="0.3"/>
+                <path d="M10 2L2 6.5l8 3.5 8-3.5L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="edu-body">
+              <h3 class="edu-degree" id="edu-ms-title">Master of Science in Artificial Intelligence</h3>
+              <p class="edu-school">University at Buffalo, SUNY</p>
+              <div class="edu-meta">
+                <span class="mono muted">Buffalo, NY</span>
+                <span class="edu-sep mono muted" aria-hidden="true">·</span>
+                <span class="mono muted">Aug 2024 – Dec 2025</span>
+              </div>
+              <p class="edu-coursework">
+                <span class="mono muted">Coursework:</span>
+                Machine Learning, Deep Learning, Computer Vision, Analysis of Algorithms
+              </p>
+            </div>
+          </article>
+
+          <article class="edu-card" aria-labelledby="edu-bs-title">
+            <div class="edu-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 2L2 6.5V8h16V6.5L10 2z" fill="currentColor" opacity="0.6"/>
+                <path d="M4 9v6a6 6 0 0012 0V9H4z" fill="currentColor" opacity="0.3"/>
+                <path d="M10 2L2 6.5l8 3.5 8-3.5L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="edu-body">
+              <h3 class="edu-degree" id="edu-bs-title">Bachelor of Engineering in Electronics &amp; Telecommunication</h3>
+              <p class="edu-school">University of Mumbai</p>
+              <div class="edu-meta">
+                <span class="mono muted">Mumbai, India</span>
+                <span class="edu-sep mono muted" aria-hidden="true">·</span>
+                <span class="mono muted">Aug 2018 – May 2022</span>
+              </div>
+              <p class="edu-coursework">
+                <span class="mono muted">Coursework:</span>
+                Database Management Systems, Image Processing
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 05 ACHIEVEMENTS ── -->
+    <section class="section section-alt" id="achievements" aria-labelledby="achievements-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">05</p>
+        <h2 class="section-title" id="achievements-heading">Achievements</h2>
+        <div class="achievements-grid">
+
+          <!-- AI For Good Hackathon -->
+          <article class="achievement-card" aria-labelledby="ach-aifg-title">
+            <div class="achievement-img-wrap">
+              <img src="assets/AI_for_good.jpeg" alt="Winner certificate — AI For Good Hackathon Spring 2025" class="achievement-img" loading="lazy" />
+            </div>
+            <div class="achievement-body">
+              <span class="achievement-rank mono">Winner</span>
+              <h3 class="achievement-title" id="ach-aifg-title">AI For Good Hackathon</h3>
+              <p class="achievement-meta mono muted">Spring 2025</p>
+              <p class="achievement-desc">Developed an AI-driven snow management solution using LSTM models.</p>
+            </div>
+          </article>
+
+          <!-- IEEE Best Volunteer -->
+          <article class="achievement-card" aria-labelledby="ach-ieee-vol-title">
+            <div class="achievement-img-wrap">
+              <img src="assets/ibssc2023.png" alt="Best Student Volunteer award — IEEE Bombay Section 2022" class="achievement-img" loading="lazy" />
+            </div>
+            <div class="achievement-body">
+              <span class="achievement-rank mono">Best Volunteer</span>
+              <h3 class="achievement-title" id="ach-ieee-vol-title">IEEE Bombay Section — SAC</h3>
+              <p class="achievement-meta mono muted">2022 · Standing Committee of the Section</p>
+              <p class="achievement-desc">Best Student Volunteer of the Standing Committee of the Section, IEEE Bombay Section.</p>
+            </div>
+          </article>
+
+          <!-- IEEE R10 Logo Competition -->
+          <article class="achievement-card" aria-labelledby="ach-ieee-logo-title">
+            <div class="achievement-img-wrap achievement-img-icon" aria-hidden="true">
+              <svg width="72" height="72" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                <path d="M28 18 L72 18 L66 56 Q62 74 50 76 Q38 74 34 56 Z" fill="currentColor" opacity="0.12" stroke="currentColor" stroke-width="2"/>
+                <path d="M28 18 Q12 18 12 36 Q12 52 28 52" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M72 18 Q88 18 88 36 Q88 52 72 52" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <rect x="38" y="76" width="24" height="7" rx="2.5" fill="currentColor" opacity="0.55"/>
+                <rect x="28" y="83" width="44" height="7" rx="2.5" fill="currentColor" opacity="0.75"/>
+                <path d="M50 28 L53 37 L63 37 L55 43 L58 52 L50 46 L42 52 L45 43 L37 37 L47 37 Z" fill="currentColor" opacity="0.65"/>
+              </svg>
+            </div>
+            <div class="achievement-body">
+              <span class="achievement-rank mono">Winner</span>
+              <h3 class="achievement-title" id="ach-ieee-logo-title">IEEE R10 Connect Logo Design Competition</h3>
+              <p class="achievement-meta mono muted">IEEE Region 10</p>
+              <p class="achievement-desc">Winner of the R10 Connect Logo Design Competition across the IEEE Asia-Pacific region.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 06 VOLUNTEERING ── -->
+    <section class="section" id="volunteering" aria-labelledby="vol-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">06</p>
+        <h2 class="section-title" id="vol-heading">Volunteering</h2>
+        <div class="vol-list">
+
+          <div class="vol-item">
+            <span class="vol-year mono muted">2024</span>
+            <div class="vol-body">
+              <p class="vol-role">Design Lead</p>
+              <p class="vol-org mono muted">IEEE Education Society Young Professionals Team</p>
+            </div>
+          </div>
+
+          <div class="vol-item">
+            <span class="vol-year mono muted">2023</span>
+            <div class="vol-body">
+              <p class="vol-role">Secretary</p>
+              <p class="vol-org mono muted">IEEE Bombay Section Young Professionals</p>
+            </div>
+          </div>
+
+          <div class="vol-item">
+            <span class="vol-year mono muted">2022</span>
+            <div class="vol-body">
+              <p class="vol-role">Design Lead</p>
+              <p class="vol-org mono muted">IEEE Bombay Section Student Activities Team</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 07 TESTIMONIALS ── -->
+    <section class="section section-alt" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">07</p>
+        <h2 class="section-title" id="testimonials-heading">What People Say</h2>
+        <p class="section-sub muted">Feedback from colleagues, clients, and collaborators</p>
+        <div class="testimonials-grid">
+
+          <blockquote class="testimonial-card">
+            <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+            <p class="testimonial-text">[TODO: Add testimonial quote]</p>
+            <footer class="testimonial-footer">
+              <strong class="testimonial-name">[TODO: Name]</strong>
+              <span class="testimonial-role mono muted">[TODO: Role &middot; Company]</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card">
+            <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+            <p class="testimonial-text">[TODO: Add testimonial quote]</p>
+            <footer class="testimonial-footer">
+              <strong class="testimonial-name">[TODO: Name]</strong>
+              <span class="testimonial-role mono muted">[TODO: Role &middot; Company]</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card">
+            <div class="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+            <p class="testimonial-text">[TODO: Add testimonial quote]</p>
+            <footer class="testimonial-footer">
+              <strong class="testimonial-name">[TODO: Name]</strong>
+              <span class="testimonial-role mono muted">[TODO: Role &middot; Company]</span>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 08 CONTACT ── -->
+    <section class="section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <p class="section-eyebrow mono">08</p>
+        <h2 class="section-title" id="contact-heading">Contact</h2>
+        <div class="contact-grid">
+
+          <div class="contact-links-col">
+            <p class="contact-intro">
+              I'm open to AI Engineer roles and research collaborations. Reach out directly or use the form.
+            </p>
+            <ul class="contact-links" role="list">
+              <li>
+                <a href="mailto:sahilshivajisawant@gmail.com" class="contact-link" aria-label="Send email">
+                  <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polyline points="2,4 12,13 22,4"/>
+                  </svg>
+                  <span>sahilshivajisawant@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/sahillarious" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                  <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                  <span>sahillarious</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/sahilsawant01/" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                  <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="assets/Sahil%20Sawant%20Resume.pdf" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Download resume PDF">
+                  <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                    <polyline points="9 15 12 18 15 15"/>
+                  </svg>
+                  <span>Resume PDF</span>
+                </a>
+              </li>
+              <li>
+                <span class="contact-link contact-location" aria-label="Location">
+                  <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span>Buffalo, NY</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-form-col">
+            <form class="contact-form" id="contactForm" aria-label="Contact form" novalidate>
+              <div class="form-group">
+                <label class="form-label mono" for="contact-name">Name</label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your name"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label mono" for="contact-email">Email</label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="form-input"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label mono" for="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="form-input form-textarea"
+                  placeholder="What's on your mind?"
+                  rows="5"
+                  required
+                  aria-required="true"
+                ></textarea>
+              </div>
+              <p class="form-note mono muted">
+                Opens your mail client with the message pre-filled (no backend).
+              </p>
+              <button type="submit" class="btn btn-primary btn-full">
+                Send via Email
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="mono muted footer-copy">
+        &copy; <span id="footerYear"></span> Sahil Sawant. Built with plain HTML, CSS, and JS.
+      </p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#about" class="footer-link mono muted">About</a>
+        <a href="#projects" class="footer-link mono muted">Projects</a>
+        <a href="#contact" class="footer-link mono muted">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ── CASPER CHAT WIDGET ── -->
+  <div class="casper-wrapper" id="casperWrapper">
+
+    <div class="casper-panel" id="casperPanel" role="dialog" aria-labelledby="casper-title" aria-modal="true" aria-hidden="true">
+      <div class="casper-header">
+        <div class="casper-header-identity">
+          <div class="casper-avatar" aria-hidden="true">
+            <!-- Clean geometric cat face -->
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+              <polygon points="4,16 8,5 13,16"   fill="#f0a830" opacity="0.9"/>
+              <polygon points="28,16 24,5 19,16"  fill="#f0a830" opacity="0.9"/>
+              <polygon points="6,15 8.5,8 12,15"  fill="#f0a830" opacity="0.3"/>
+              <polygon points="26,15 23.5,8 20,15" fill="#f0a830" opacity="0.3"/>
+              <ellipse cx="16" cy="21" rx="11.5" ry="9.5" fill="#f0a830" opacity="0.12" stroke="#f0a830" stroke-width="1.4"/>
+              <ellipse cx="12"  cy="20" rx="1.8" ry="2.3" fill="#f0a830"/>
+              <ellipse cx="20"  cy="20" rx="1.8" ry="2.3" fill="#f0a830"/>
+              <path d="M15 24 L16 22.5 L17 24Z" fill="#f0a830" opacity="0.75"/>
+              <path d="M13.5 25.5 Q16 27.5 18.5 25.5" stroke="#f0a830" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+              <line x1="1"  y1="22"   x2="9.5"  y2="21.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+              <line x1="1"  y1="24.5" x2="9.5"  y2="23.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+              <line x1="31" y1="22"   x2="22.5" y2="21.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+              <line x1="31" y1="24.5" x2="22.5" y2="23.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="casper-header-text">
+            <span class="casper-title" id="casper-title">Casper</span>
+            <span class="casper-subtitle mono">Portfolio Assistant</span>
+          </div>
+        </div>
+        <button class="casper-close" id="casperClose" aria-label="Close Casper chat">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="casper-messages" id="casperMessages" role="log" aria-live="polite" aria-relevant="additions">
+        <div class="casper-msg casper-msg-bot">
+          <div class="casper-msg-bubble">
+            Hey! I'm Casper 🐱 — Sahil's portfolio assistant. Ask me about his projects, experience, skills, or how to reach him.
+          </div>
+        </div>
+      </div>
+
+      <form class="casper-input-row" id="casperForm" autocomplete="off" novalidate>
+        <input
+          type="text"
+          id="casperInput"
+          class="casper-input"
+          placeholder="Ask me anything…"
+          aria-label="Message Casper"
+          maxlength="400"
+        />
+        <button type="submit" class="casper-send" aria-label="Send message">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <button class="casper-fab" id="casperToggle" aria-label="Chat with Casper" aria-expanded="false" aria-controls="casperPanel">
+      <!-- Paw print icon -->
+      <svg class="casper-fab-cat" width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <ellipse cx="7"  cy="10" rx="3.4" ry="2.9"/>
+        <ellipse cx="13.5" cy="6.5" rx="3.4" ry="2.9"/>
+        <ellipse cx="20.5" cy="6.5" rx="3.4" ry="2.9"/>
+        <ellipse cx="27" cy="10" rx="3.4" ry="2.9"/>
+        <path d="M9.5 18.5 Q7 25.5 11 28.5 Q13.5 30.5 16 30 Q18.5 30.5 21 28.5 Q25 25.5 22.5 18.5 Q20.5 14 16 14 Q11.5 14 9.5 18.5Z"/>
+      </svg>
+      <span class="casper-fab-badge" id="casperBadge">1</span>
+    </button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

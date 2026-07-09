@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buffalo Accident Risk &amp; Resource Allocation · Sahil Sawant</title>
+  <meta name="description" content="Reinforcement-learning-based emergency resource dispatch across Buffalo, NY — PPO agent trained on ~10,000 real traffic incidents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <!-- Apply saved theme before paint to avoid flash -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <style>
+    /* ── Page shell ── */
+    .detail-main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 100px 24px 100px;
+    }
+
+    /* ── Back link ── */
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      transition: color var(--transition);
+    }
+    .detail-back:hover { color: var(--accent); }
+    .detail-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Header block ── */
+    .detail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .detail-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .detail-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .detail-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .detail-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    /* ── Section headings ── */
+    .detail-section {
+      margin-bottom: 48px;
+    }
+    .detail-section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    .detail-section-title::after {
+      content: '';
+      display: block;
+      margin-top: 8px;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ── Prose ── */
+    .detail-prose {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+    }
+
+    /* ── Approach sub-blocks ── */
+    .detail-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .detail-block {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      transition: border-color var(--transition);
+    }
+    .detail-block:hover { border-color: var(--accent); }
+    .detail-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .detail-block p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      margin: 0;
+    }
+
+    /* ── Results table ── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .result-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color var(--transition);
+    }
+    .result-card:hover { border-color: var(--accent); }
+    .result-agent {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .result-reward {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+    .result-card.result-negative .result-reward {
+      color: var(--text-muted);
+    }
+    .result-note {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    /* ── Future work list ── */
+    .detail-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .detail-list li {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+    .detail-list li::before {
+      content: '▹';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    /* ── Contributors ── */
+    .detail-contributors {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .results-grid { grid-template-columns: 1fr; }
+      .detail-main { padding: 80px 16px 80px; }
+    }
+    @media (min-width: 481px) and (max-width: 640px) {
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── THEME TOGGLE ── -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+    <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+    <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <main class="detail-main" id="main-content">
+
+    <a href="index.html#projects" class="detail-back">← Back to Portfolio</a>
+
+    <!-- ── Header ── -->
+    <span class="detail-eyebrow">Project</span>
+    <h1 class="detail-title">Buffalo Accident Risk &amp; Resource Allocation</h1>
+    <p class="detail-subtitle">Reinforcement-learning-based emergency resource dispatch across Buffalo, NY</p>
+
+    <div class="detail-tag-row" role="list" aria-label="Technologies">
+      <span class="tag" role="listitem">PPO</span>
+      <span class="tag" role="listitem">Reinforcement Learning</span>
+      <span class="tag" role="listitem">PyTorch</span>
+      <span class="tag" role="listitem">Actor-Critic</span>
+      <span class="tag" role="listitem">Python</span>
+    </div>
+
+    <div class="detail-links">
+      <a href="https://github.com/sahillarious/Buffalo-Accident-Risk-Prediction-Resource-Allocation"
+         target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        GitHub →
+      </a>
+    </div>
+
+    <!-- ── Overview ── -->
+    <section class="detail-section" aria-labelledby="section-overview">
+      <h2 class="detail-section-title" id="section-overview">Overview</h2>
+      <p class="detail-prose">
+        Urban emergency response is often static and slow to adapt to real-time risk. This project addresses Buffalo,
+        NY's roughly 10,000 annual traffic incidents by modeling resource allocation as a reinforcement learning
+        problem — dynamically placing Police, EMS, and DOT (tow truck) units across the city to minimize response
+        times and maximize coverage in high-risk zones.
+      </p>
+    </section>
+
+    <!-- ── Approach ── -->
+    <section class="detail-section" aria-labelledby="section-approach">
+      <h2 class="detail-section-title" id="section-approach">Approach</h2>
+      <div class="detail-blocks">
+
+        <div class="detail-block">
+          <span class="detail-block-label">Data &amp; Risk Mapping</span>
+          <p>
+            Real-world traffic incident data from the City of Buffalo Open Data Portal was mapped onto a 145-cell
+            grid (500m &times; 500m per cell). Incidents were classified into three types — Property Damage, Injury,
+            and Skyway/High-speed — and per-cell probabilities were calculated to define need levels (Low, Medium,
+            High) for each accident type.
+          </p>
+        </div>
+
+        <div class="detail-block">
+          <span class="detail-block-label">RL Framework</span>
+          <p>
+            The allocation problem is modeled as an MDP. The state space encodes accident probabilities, available
+            resources, current allocation, and per-cell resource limits. The action space is a three-part discrete
+            action: action type (allocate/deallocate), resource type (Police, EMS, or DOT), and target grid cell.
+            A PPO agent with an Actor-Critic architecture was trained for its stability on this complex control
+            task, and benchmarked against a DQN agent and a random-allocation baseline.
+          </p>
+        </div>
+
+        <div class="detail-block">
+          <span class="detail-block-label">Reward Design</span>
+          <p>
+            Reward structure incentivizes meeting real need: a high reward (1000 base, scaled 3&times; in
+            high-need zones) for fulfilling a cell's resource requirements, a penalty (&minus;5 per unit) for
+            leaving resources idle, and penalties for invalid actions like over-allocating (&minus;2) or
+            deploying from an empty pool (&minus;20).
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Results ── -->
+    <section class="detail-section" aria-labelledby="section-results">
+      <h2 class="detail-section-title" id="section-results">Results</h2>
+      <div class="results-grid" role="list">
+
+        <div class="result-card" role="listitem">
+          <span class="result-agent">PPO Agent</span>
+          <span class="result-reward">~793</span>
+          <span class="result-note">Strategic clustering</span>
+        </div>
+
+        <div class="result-card result-negative" role="listitem">
+          <span class="result-agent">DQN Agent</span>
+          <span class="result-reward">~&minus;47,500</span>
+          <span class="result-note">Hesitant / incomplete</span>
+        </div>
+
+        <div class="result-card result-negative" role="listitem">
+          <span class="result-agent">Random Baseline</span>
+          <span class="result-reward">&minus;8,170 to &minus;8,230</span>
+          <span class="result-note">Wasteful / invalid actions</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Future Work ── -->
+    <section class="detail-section" aria-labelledby="section-future">
+      <h2 class="detail-section-title" id="section-future">Future Work</h2>
+      <ul class="detail-list">
+        <li>Incorporating temporal variation (time-of-day, seasonal patterns, traffic flow) into risk modeling</li>
+        <li>Real-time traffic data integration for live response-time estimation</li>
+        <li>Hierarchical RL to better coordinate multiple resource types</li>
+      </ul>
+    </section>
+
+    <!-- ── Contributors ── -->
+    <section class="detail-section" aria-labelledby="section-contributors">
+      <h2 class="detail-section-title" id="section-contributors">Contributors</h2>
+      <div class="detail-contributors">
+        Built with Meghna Trichur Saravana Shekhar and Fagun Nirag Patel, Department of Computer Science and
+        Engineering, University at Buffalo.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="mono muted footer-copy">
+        &copy; <span id="footerYear"></span> Sahil Sawant. Built with plain HTML, CSS, and JS.
+      </p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#about" class="footer-link mono muted">About</a>
+        <a href="index.html#projects" class="footer-link mono muted">Projects</a>
+        <a href="index.html#contact" class="footer-link mono muted">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

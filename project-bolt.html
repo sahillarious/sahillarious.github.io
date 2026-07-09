@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B.O.L.T — Quadruped Vision &amp; Voice Control · Sahil Sawant</title>
+  <meta name="description" content="B.O.L.T (Behavioral Object Locomotion & Tracking) — a real-time vision-guided tracking and voice-control system built on a Unitree Go2 quadruped robot." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <!-- Apply saved theme before paint to avoid a flash -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <style>
+    .detail-main { max-width: 760px; margin: 0 auto; padding: 120px 24px 100px; }
+    .detail-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 0.78rem;
+      color: var(--text-muted); margin-bottom: 40px;
+      transition: color var(--transition);
+    }
+    .detail-back:hover { color: var(--accent); }
+    .detail-eyebrow {
+      font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+    }
+    .detail-title {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 12px;
+    }
+    .detail-subtitle { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 24px; }
+    .detail-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+    .detail-intro { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 36px; }
+    .detail-section { margin-bottom: 34px; }
+    .detail-section h2 {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.3rem;
+      color: var(--text); letter-spacing: -0.01em; margin-bottom: 12px;
+    }
+    .detail-section p { color: var(--text-muted); line-height: 1.8; }
+    .detail-perf { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .detail-perf li {
+      display: flex; gap: 12px; align-items: baseline;
+      color: var(--text-muted); line-height: 1.6;
+    }
+    .detail-perf li::before { content: '▹'; color: var(--accent); flex-shrink: 0; }
+    .detail-perf strong { color: var(--text); font-weight: 600; }
+    .detail-stack {
+      font-family: var(--font-mono); font-size: 0.86rem; line-height: 1.7;
+      color: var(--text-muted); background: var(--surface-1);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .detail-stack strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- ── THEME TOGGLE ── -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+    <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+    <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <main class="detail-main">
+    <a href="index.html#projects" class="detail-back">← Back to projects</a>
+
+    <p class="detail-eyebrow">Project · AI Capstone</p>
+    <h1 class="detail-title">B.O.L.T — Quadruped Vision &amp; Voice Control</h1>
+    <p class="detail-subtitle">Real-time tracking and voice control on a Unitree Go2</p>
+
+    <div class="detail-links">
+      <a href="https://github.com/sahillarious/BOLT" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub →</a>
+      <a href="https://drive.google.com/file/d/1BUoWv1CLVT01VscaT4kud1bpV76iTD_6/view" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Watch Demo →</a>
+    </div>
+
+    <p class="detail-intro">
+      B.O.L.T (Behavioral Object Locomotion &amp; Tracking) is a real-time vision-guided tracking and voice-control
+      system built on a Unitree Go2 quadruped robot, developed as an EAS 563 AI Capstone project at the University at
+      Buffalo, advised by Prof. David Doermann.
+    </p>
+
+    <div class="detail-section">
+      <h2>Perception &amp; Control</h2>
+      <p>
+        A custom-trained YOLOv8 detector identifies and tracks a target object (color-coded balls) in real time, fused
+        with Intel RealSense depth data for monocular distance estimation. A finite-state machine converts this visual
+        feedback directly into velocity commands for the robot, enabling smooth closed-loop following without relying on
+        SLAM. Occlusion-aware re-identification with Kalman filtering keeps the track stable through brief occlusions and
+        target switches.
+      </p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Voice Control</h2>
+      <p>
+        The system was extended with a hands-free voice interface: a Whisper speech-to-text pipeline feeds a lightweight
+        regex-based command parser, which dispatches recognized commands over SSH to the robot's on-device execution
+        loop. This supports 20+ distinct spoken behaviors, letting an operator direct the robot's movement and tracking
+        targets verbally instead of through a keyboard or controller.
+      </p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Performance</h2>
+      <ul class="detail-perf">
+        <li><span>Average end-to-end latency: <strong>~48ms</strong> (worst case ~61ms)</span></li>
+        <li><span>Detection accuracy: <strong>mAP@0.5 ≈ 0.995</strong></span></li>
+        <li><span>Tracking success rate: <strong>&gt;90%</strong> in indoor environments, robust across varied lighting</span></li>
+      </ul>
+    </div>
+
+    <div class="detail-section">
+      <h2>Stack</h2>
+      <p class="detail-stack">
+        <strong>Python</strong>, YOLOv8 (Ultralytics), OpenCV, ROS/ROS2, Intel RealSense, Whisper STT, Jetson Nano
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

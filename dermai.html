@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DermAI · Sahil Sawant</title>
+  <meta name="description" content="DermAI — an ensemble dermatological image classifier with GPT-4 diagnostic feedback, built on the HAM10000 dataset." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <!-- Apply saved theme before paint to avoid flash -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <style>
+    /* ── Page shell ── */
+    .detail-main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 100px 24px 100px;
+    }
+
+    /* ── Back link ── */
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      transition: color var(--transition);
+    }
+    .detail-back:hover { color: var(--accent); }
+    .detail-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Header block ── */
+    .detail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .detail-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .detail-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .detail-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .detail-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    /* ── Section headings ── */
+    .detail-section {
+      margin-bottom: 48px;
+    }
+    .detail-section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    .detail-section-title::after {
+      content: '';
+      display: block;
+      margin-top: 8px;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ── Prose ── */
+    .detail-prose {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+    }
+
+    /* ── Approach sub-blocks ── */
+    .detail-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .detail-block {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      transition: border-color var(--transition);
+    }
+    .detail-block:hover { border-color: var(--accent); }
+    .detail-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .detail-block p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      margin: 0;
+    }
+
+    /* ── Results comparison ── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .result-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color var(--transition);
+    }
+    .result-card:hover { border-color: var(--accent); }
+    .result-card.result-highlight { border-color: var(--accent); background: var(--accent-dim); }
+    .result-agent {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .result-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .result-stat {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .result-stat strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .result-card.result-highlight .result-stat strong {
+      color: var(--accent);
+    }
+
+    /* ── Future work list ── */
+    .detail-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .detail-list li {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+    .detail-list li::before {
+      content: '▹';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    /* ── Contributors ── */
+    .detail-contributors {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .results-grid { grid-template-columns: 1fr; }
+      .detail-main { padding: 80px 16px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── THEME TOGGLE ── -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+    <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+    <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <main class="detail-main" id="main-content">
+
+    <a href="index.html#projects" class="detail-back">← Back to Portfolio</a>
+
+    <!-- ── Header ── -->
+    <span class="detail-eyebrow">Project</span>
+    <h1 class="detail-title">DermAI</h1>
+    <p class="detail-subtitle">Dermatological image classification with LLM-grounded feedback</p>
+
+    <div class="detail-tag-row" role="list" aria-label="Technologies">
+      <span class="tag" role="listitem">PyTorch</span>
+      <span class="tag" role="listitem">ResNet50</span>
+      <span class="tag" role="listitem">EfficientNet-B0</span>
+      <span class="tag" role="listitem">SMOTE</span>
+      <span class="tag" role="listitem">GPT-4</span>
+      <span class="tag" role="listitem">Gradio</span>
+    </div>
+
+    <div class="detail-links">
+      <a href="https://github.com/sahillarious/DermAI"
+         target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        GitHub →
+      </a>
+    </div>
+
+    <!-- ── Overview ── -->
+    <section class="detail-section" aria-labelledby="section-overview">
+      <h2 class="detail-section-title" id="section-overview">Overview</h2>
+      <p class="detail-prose">
+        DermAI is an ensemble diagnostic system for skin disease detection built on the HAM10000 dataset. Skin
+        diseases affect millions globally, yet access to dermatologists remains limited — DermAI addresses this
+        with high-accuracy lesion classification paired with an LLM layer that interprets results and generates
+        clinically grounded, context-aware feedback through Gradio.
+      </p>
+    </section>
+
+    <!-- ── Approach ── -->
+    <section class="detail-section" aria-labelledby="section-approach">
+      <h2 class="detail-section-title" id="section-approach">Approach</h2>
+      <div class="detail-blocks">
+
+        <div class="detail-block">
+          <span class="detail-block-label">Data Processing &amp; Augmentation</span>
+          <p>
+            The HAM10000 dataset contains 10,015 dermatological images across 7 lesion types, with severe class
+            imbalance (e.g. 6,705 Melanocytic Nevi vs. just 115 Dermatofibroma). SMOTE (Synthetic Minority
+            Over-sampling Technique) and custom class weighting address this imbalance, while random rotations,
+            horizontal/vertical flips, and normalization improve model robustness.
+          </p>
+        </div>
+
+        <div class="detail-block">
+          <span class="detail-block-label">Ensemble Transfer Learning</span>
+          <p>
+            Rather than relying on a single model, DermAI combines four state-of-the-art architectures: ResNet50
+            for deep residual features, DenseNet121 for feature reuse through dense connections, VGG-19 for
+            robust low-level feature extraction, and EfficientNet-B0 for efficient depth/width/resolution scaling.
+            Ensembling these four maximizes stability and precision across all 7 lesion classes.
+          </p>
+        </div>
+
+        <div class="detail-block">
+          <span class="detail-block-label">LLM Diagnostic Feedback</span>
+          <p>
+            Classification outputs are passed to a GPT-4 prompt engine, which generates natural-language feedback
+            explaining the characteristics of the detected lesion and recommending next steps. The full pipeline
+            is deployed through a Gradio web interface for real-time image uploads and immediate diagnosis.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Results ── -->
+    <section class="detail-section" aria-labelledby="section-results">
+      <h2 class="detail-section-title" id="section-results">Results</h2>
+      <div class="results-grid" role="list">
+
+        <div class="result-card" role="listitem">
+          <span class="result-agent">ResNet50 Baseline</span>
+          <div class="result-stats">
+            <span class="result-stat">Precision <strong>0.88</strong></span>
+            <span class="result-stat">Recall <strong>0.87</strong></span>
+            <span class="result-stat">F1 <strong>0.87</strong></span>
+          </div>
+        </div>
+
+        <div class="result-card result-highlight" role="listitem">
+          <span class="result-agent">DermAI Ensemble</span>
+          <div class="result-stats">
+            <span class="result-stat">Precision <strong>0.94</strong></span>
+            <span class="result-stat">Recall <strong>0.93</strong></span>
+            <span class="result-stat">F1 <strong>0.93</strong></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Future Work ── -->
+    <section class="detail-section" aria-labelledby="section-future">
+      <h2 class="detail-section-title" id="section-future">Future Work</h2>
+      <ul class="detail-list">
+        <li>Knowledge graph integration (Neo4j) to ground LLM feedback in medical ontologies</li>
+        <li>Mobile/edge deployment to improve accessibility in remote areas</li>
+        <li>Multi-modal integration of patient history and metadata (age, lesion location) to improve diagnostic precision</li>
+      </ul>
+    </section>
+
+    <!-- ── Contributors ── -->
+    <section class="detail-section" aria-labelledby="section-contributors">
+      <h2 class="detail-section-title" id="section-contributors">Contributors</h2>
+      <div class="detail-contributors">
+        Built with Meghna Trichur Saravana Shekhar at the University at Buffalo's School of Engineering &amp;
+        Applied Sciences. Sahil led ensemble model building, SMOTE implementation, and LLM integration; Meghna
+        led dataset preprocessing, baseline benchmarking, and Gradio deployment.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="mono muted footer-copy">
+        &copy; <span id="footerYear"></span> Sahil Sawant. Built with plain HTML, CSS, and JS.
+      </p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#about" class="footer-link mono muted">About</a>
+        <a href="index.html#projects" class="footer-link mono muted">Projects</a>
+        <a href="index.html#contact" class="footer-link mono muted">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
