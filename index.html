@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sahil Sawant — AI/ML Engineer</title>
-  <meta name="description" content="Sahil Sawant — AI/ML Engineer based in Buffalo, NY. Building agentic AI and applied ML that ships: RAG, multi-agent orchestration, and ML systems, with the evaluation and deployment to back them." />
+  <meta name="description" content="Sahil Sawant — AI/ML Engineer based in Shrewsbury, MA, open to relocation in the U.S. Building agentic AI and applied ML that ships: RAG, multi-agent orchestration, and ML systems, with the evaluation and deployment to back them." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
 
@@ -47,21 +46,24 @@
 
         <!-- Left: text + about -->
         <div class="hero-left">
-          <p class="hero-eyebrow mono">AI / ML Engineer</p>
           <h1 class="hero-name">Sahil<br />Sawant</h1>
+          <p class="hero-roles" aria-label="Roles">
+            <span class="hero-role-prefix">Looking for</span>
+            <span class="hero-role" id="roleRotator" aria-live="polite">AI Engineer</span>
+            <span class="hero-role-prefix">roles</span>
+          </p>
           <p class="hero-about-para">
             AI/ML Engineer with early-career experience building agentic AI systems and multi-agent orchestration.
             Delivered production AI platforms including a PDF-to-KnowledgeGraph pipeline and a multi-agent troubleshooting platform,
             leveraging LLM orchestration and graph-guided reasoning for real-time problem-solving and knowledge management.
           </p>
           <div class="hero-cta">
-            <a href="#projects" class="btn btn-solid">View Projects</a>
             <a href="assets/Sahil%20Sawant%20Resume.pdf" class="btn btn-outline" download="Sahil Sawant Resume.pdf" aria-label="Download resume PDF">Download Resume</a>
           </div>
           <div class="hero-chips">
-            <span class="chip">MS in AI · University at Buffalo</span>
-            <span class="chip">Based in Buffalo, NY</span>
-            <span class="chip">Open to AI Engineer roles</span>
+            <span class="chip">Based in Shrewsbury, MA</span>
+            <span class="chip">Open to relocation in the U.S.</span>
+
           </div>
           <div class="hero-social" aria-label="Social profiles">
             <a href="https://github.com/sahillarious" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub — sahillarious">
@@ -192,6 +194,38 @@
         <h2 class="section-title" id="experience-heading">Experience</h2>
         <div class="timeline">
 
+          <!-- UB AI Research Assistant -->
+          <article class="timeline-card" aria-labelledby="exp-ubai-title">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <header class="timeline-header">
+                <div class="timeline-meta">
+                  <h3 class="timeline-role" id="exp-ubai-title">AI Research Assistant</h3>
+                  <p class="timeline-org">University at Buffalo</p>
+                </div>
+                <div class="timeline-details">
+                  <span class="mono muted timeline-location">Buffalo, NY</span>
+                  <span class="mono muted timeline-dates">Jun 2026 – Present</span>
+                </div>
+              </header>
+              <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
+                <li>Integrated a Neo4j knowledge graph with a Qdrant vector store (BGE-M3 dense + BM25 hybrid search) into a single retrieval layer that runs both paths in parallel per question, allowing the university-hosted Qwen-27B model to answer queries across 450+ scraped department pages with higher relevance.</li>
+                <li>Cut median response latency from ~90s to ~45s by disabling Qwen's internal reasoning on Cypher generation while keeping it on for answer synthesis.</li>
+                <li>Scraped and normalized HTML, Markdown, and JSONL from Playwright/Firecrawl crawls into a Neo4j graph, modeling faculties, courses, labs, research areas, and policies, which enabled students to run queries and quickly locate relevant information.</li>
+              </ul>
+              <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">Neo4j</span>
+                <span class="tag tag-sm">Qdrant</span>
+                <span class="tag tag-sm">BGE-M3</span>
+                <span class="tag tag-sm">BM25</span>
+                <span class="tag tag-sm">Qwen</span>
+                <span class="tag tag-sm">Playwright</span>
+                <span class="tag tag-sm">Firecrawl</span>
+                <span class="tag tag-sm">Hybrid Search</span>
+              </div>
+            </div>
+          </article>
+
           <!-- Arta Support -->
           <article class="timeline-card" aria-labelledby="exp-arta-title">
             <div class="timeline-marker" aria-hidden="true"></div>
@@ -207,51 +241,21 @@
                 </div>
               </header>
               <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
-                <li>Scaled a prototype multi-agent troubleshooting system into an enterprise platform serving four distinct roles, delivering real-time graph-guided responses at ~30s average latency.</li>
-                <li>Engineered a graph-guided agentic RAG system combining Pinecone with Neo4j, improving retrieval precision by 30% and reducing knowledge base update time through a PDF-to-Knowledge-Graph pipeline.</li>
-                <li>Designed Text-to-Cypher query prompts for creating graph schemas to enable multi-hop traversal over entities and relationships.</li>
-                <li>Deployed a full-stack user authentication and API key management system using AWS (Cognito, DynamoDB, and KMS), adding admin approval workflows, role-based dashboards, and self-serve API key rotation.</li>
-                <li>Built token-accounting infrastructure to meter per-user and per-model LLM token usage across AWS EC2 hosted services, enabling cross-region budget controls.</li>
+                <li>Scaled a troubleshooting system into an enterprise platform with ~30s response latency by orchestrating 4 AI agent workflows (router, intent, clarification, diagnosis) powered by Claude Sonnet, optimizing production performance via Anthropic prompt-caching, Socket.IO tool-calling, and conditional self-correction retries.</li>
+                <li>Paired Pinecone with Neo4j in a hybrid graph-guided RAG system, improving retrieval precision by 30% by landing agents directly on exact knowledge-graph nodes rather than relying on standard context-stuffing.</li>
+                <li>Automated a PDF-to-Knowledge-Graph ingestion pipeline via Text-to-Cypher query generation, cutting knowledge-base update time by 40% and keeping vector indices synchronized with Neo4j.</li>
+                <li>Deployed full-stack AWS authentication and LLM token-accounting systems (Cognito, DynamoDB, KMS, EC2), delivering role-based dashboards, self-serve API key rotation, and per-model usage tracking to enforce cross-region budget controls.</li>
               </ul>
               <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">Claude Sonnet</span>
                 <span class="tag tag-sm">LangGraph</span>
                 <span class="tag tag-sm">Neo4j</span>
                 <span class="tag tag-sm">Pinecone</span>
+                <span class="tag tag-sm">Socket.IO</span>
                 <span class="tag tag-sm">AWS Cognito</span>
                 <span class="tag tag-sm">DynamoDB</span>
                 <span class="tag tag-sm">KMS</span>
                 <span class="tag tag-sm">EC2</span>
-                <span class="tag tag-sm">FastAPI</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- UB Research -->
-          <article class="timeline-card" aria-labelledby="exp-ub-title">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-body">
-              <header class="timeline-header">
-                <div class="timeline-meta">
-                  <h3 class="timeline-role" id="exp-ub-title">Graduate Research Assistant</h3>
-                  <p class="timeline-org">University at Buffalo</p>
-                </div>
-                <div class="timeline-details">
-                  <span class="mono muted timeline-location">Buffalo, NY</span>
-                  <span class="mono muted timeline-dates">Aug 2025 – Dec 2025</span>
-                </div>
-              </header>
-              <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
-                <li>Developed a vision-guided object-following system for the Unitree Go2 quadruped robot, achieving 48ms latency and 90%+ target tracking success in indoor environments.</li>
-                <li>Created a voice AI pipeline for the robot using Whisper STT and a regex-based NLP parser dispatching commands over SSH to the on-robot execution loop, supporting 20+ distinct behaviors.</li>
-                <li>Trained a perception pipeline using a quantized YOLOv8n model deployed on Jetson Nano, on a custom-annotated dataset with geometric and photometric augmentations, achieving mAP@0.5 of 0.995.</li>
-              </ul>
-              <div class="timeline-tags" aria-label="Technologies used">
-                <span class="tag tag-sm">YOLOv8n</span>
-                <span class="tag tag-sm">Jetson Nano</span>
-                <span class="tag tag-sm">Whisper STT</span>
-                <span class="tag tag-sm">RealSense</span>
-                <span class="tag tag-sm">Computer Vision</span>
-                <span class="tag tag-sm">SSH</span>
               </div>
             </div>
           </article>
@@ -271,15 +275,17 @@
                 </div>
               </header>
               <ul class="timeline-bullets" aria-label="Responsibilities and achievements">
-                <li>Managed job scheduling and deployment pipelines using AppWorx, monitoring 30+ workflow chains per shift across 24-hour rotating operations, promoting chains across Dev, QA, and Production and coordinating cross-team notifications for aborts and crashes to maintain continuous pipeline availability.</li>
-                <li>Replaced manual data-handling workflows with optimized PL/SQL packages and stored procedures across Oracle EBS modules, reducing manual intervention by 35% and improving run consistency.</li>
-                <li>Performed data reconciliation and validation across EBS batch loads, identifying and correcting data discrepancies before they propagated into dependent job chains.</li>
+                <li>Engineered an enterprise text-to-SQL RAG system using LangGraph and Llama-2-70B over Oracle EBS schemas, enabling non-technical warehouse staff to query aerospace inventory databases in plain language.</li>
+                <li>Slashed prompt token overhead by 65% and eliminated hallucinated column errors by abandoning static prompt definitions in favor of a dynamic retrieval mechanism that grounds generation on live, runtime SCM schema metadata.</li>
+                <li>Improved the system to handle 5,000+ weekly inventory queries with a 94% user-acceptance accuracy rate, delivering a FastAPI backend and React frontend that stream verified SQL, raw data arrays, and generate analytical charts using Matplotlib.</li>
               </ul>
               <div class="timeline-tags" aria-label="Technologies used">
+                <span class="tag tag-sm">LangGraph</span>
+                <span class="tag tag-sm">Llama-2-70B</span>
                 <span class="tag tag-sm">Oracle EBS</span>
-                <span class="tag tag-sm">PL/SQL</span>
-                <span class="tag tag-sm">AppWorx</span>
-                <span class="tag tag-sm">SQL</span>
+                <span class="tag tag-sm">FastAPI</span>
+                <span class="tag tag-sm">React</span>
+                <span class="tag tag-sm">Matplotlib</span>
               </div>
             </div>
           </article>
@@ -634,7 +640,7 @@
 
           <div class="contact-links-col">
             <p class="contact-intro">
-              I'm open to AI Engineer roles and research collaborations. Reach out directly or use the form.
+              I'm open to AI Engineer roles and research collaborations. Reach out directly through any of the links below.
             </p>
             <ul class="contact-links" role="list">
               <li>
@@ -679,59 +685,10 @@
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
-                  <span>Buffalo, NY</span>
+                  <span>Shrewsbury, MA · Open to relocation in the U.S.</span>
                 </span>
               </li>
             </ul>
-          </div>
-
-          <div class="contact-form-col">
-            <form class="contact-form" id="contactForm" aria-label="Contact form" novalidate>
-              <div class="form-group">
-                <label class="form-label mono" for="contact-name">Name</label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  class="form-input"
-                  placeholder="Your name"
-                  autocomplete="name"
-                  required
-                  aria-required="true"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label mono" for="contact-email">Email</label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  class="form-input"
-                  placeholder="your@email.com"
-                  autocomplete="email"
-                  required
-                  aria-required="true"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label mono" for="contact-message">Message</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  class="form-input form-textarea"
-                  placeholder="What's on your mind?"
-                  rows="5"
-                  required
-                  aria-required="true"
-                ></textarea>
-              </div>
-              <p class="form-note mono muted">
-                Opens your mail client with the message pre-filled (no backend).
-              </p>
-              <button type="submit" class="btn btn-primary btn-full">
-                Send via Email
-              </button>
-            </form>
           </div>
 
         </div>
@@ -761,22 +718,7 @@
       <div class="casper-header">
         <div class="casper-header-identity">
           <div class="casper-avatar" aria-hidden="true">
-            <!-- Clean geometric cat face -->
-            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-              <polygon points="4,16 8,5 13,16"   fill="#f0a830" opacity="0.9"/>
-              <polygon points="28,16 24,5 19,16"  fill="#f0a830" opacity="0.9"/>
-              <polygon points="6,15 8.5,8 12,15"  fill="#f0a830" opacity="0.3"/>
-              <polygon points="26,15 23.5,8 20,15" fill="#f0a830" opacity="0.3"/>
-              <ellipse cx="16" cy="21" rx="11.5" ry="9.5" fill="#f0a830" opacity="0.12" stroke="#f0a830" stroke-width="1.4"/>
-              <ellipse cx="12"  cy="20" rx="1.8" ry="2.3" fill="#f0a830"/>
-              <ellipse cx="20"  cy="20" rx="1.8" ry="2.3" fill="#f0a830"/>
-              <path d="M15 24 L16 22.5 L17 24Z" fill="#f0a830" opacity="0.75"/>
-              <path d="M13.5 25.5 Q16 27.5 18.5 25.5" stroke="#f0a830" stroke-width="1.1" stroke-linecap="round" fill="none"/>
-              <line x1="1"  y1="22"   x2="9.5"  y2="21.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
-              <line x1="1"  y1="24.5" x2="9.5"  y2="23.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
-              <line x1="31" y1="22"   x2="22.5" y2="21.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
-              <line x1="31" y1="24.5" x2="22.5" y2="23.5" stroke="#f0a830" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
-            </svg>
+            <img src="assets/cat7.png?v=7" alt="Casper" class="casper-avatar-img" />
           </div>
           <div class="casper-header-text">
             <span class="casper-title" id="casper-title">Casper</span>
@@ -830,6 +772,6 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

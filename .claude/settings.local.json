@@ -1,7 +1,26 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "PowerShell(python --version)",
+      "PowerShell(pip install -q -r D:\\\\Website\\\\requirements.txt 2>&1)",
+      "PowerShell(python \"C:\\\\Users\\\\sahil\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Website\\\\f91e9388-68f9-467e-a556-47023a169465\\\\scratchpad\\\\check_slugs.py\")",
+      "PowerShell(python -c \"import openpyxl, pydantic, requests; print\\('deps ok', openpyxl.__version__\\)\")",
+      "PowerShell(python -m pip install \"openpyxl>=3.1\" --quiet 2>&1)",
+      "PowerShell(python -c \"import openpyxl; print\\('openpyxl', openpyxl.__version__\\)\")",
+      "Bash(python -c ' *)",
+      "PowerShell(python -m scraper.runner --out-dir . 2>&1)",
+      "PowerShell(python -m scraper.audit_seniority --out excluded_by_seniority.csv 2>&1)",
+      "Bash(python -c \"import requests, bs4, dateutil, openpyxl; print\\('core deps present'\\)\")",
+      "Bash(python -m scraper.selftest)",
+      "Bash(timeout 90 python -m scraper.main --platforms greenhouse --roles \"AI Engineer\" --pages 1 --dry-run)",
+      "WebFetch(domain:serper.dev)",
+      "Bash(python -c \"from scraper import config; print\\('key loaded:', config.SERPER_API_KEY\\); print\\('provider would be:', type\\(__import__\\('scraper.search', fromlist=['get_provider']\\).get_provider\\(\\)\\).__name__\\)\")",
+      "Bash(python -c \"import scraper.main, scraper.workday, scraper.pipeline; print\\('imports OK'\\)\")",
+      "Bash(timeout 90 python -m scraper.main --check-workday)",
+      "Bash(timeout 150 python -m scraper.main --source workday --roles \"AI Engineer\" \"Machine Learning Engineer\" --dry-run)",
+      "Bash(timeout 400 python -m scraper.main --source workday --roles \"AI Engineer\" --output-dir output --max-age-days 30)",
+      "Bash(REQUEST_DELAY=0.3 timeout 300 python -m scraper.main --source workday --roles \"AI Engineer\" --output-dir scraper/output --max-age-days 30)"
     ]
   }
 }

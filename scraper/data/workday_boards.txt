@@ -1,0 +1,19 @@
+# Workday boards to search directly via the CXS API (source=workday).
+# One board URL per line. Blank lines and lines starting with # are ignored.
+#
+# HOW TO ADD A COMPANY:
+#   1. Open the company's careers page — if the URL contains
+#      "myworkdayjobs.com", it's on Workday.
+#   2. Copy the board URL up to and including the site name, e.g.
+#        https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite
+#      (the "en-US" locale segment is optional; both forms work.)
+#   3. Paste it below and run:  python -m scraper.main --check-workday
+#      to confirm it resolves to a live board.
+#
+# The lines below were verified live (job counts as of the last check):
+
+https://workday.wd5.myworkdayjobs.com/Workday
+https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite
+https://salesforce.wd12.myworkdayjobs.com/External_Career_Site
+https://adobe.wd5.myworkdayjobs.com/external_experienced
+https://paypal.wd1.myworkdayjobs.com/jobs

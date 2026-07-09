@@ -1,0 +1,12 @@
+name = "casper-worker"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# The OpenAI API key is a SECRET — do NOT put it here.
+# Set it once with:  npx wrangler secret put OPENAI_API_KEY
+#
+# Non-secret config lives in [vars]. Lock ALLOWED_ORIGIN down to your real
+# site origin(s) once you know the deployed URL (comma-separated for multiple).
+[vars]
+ALLOWED_ORIGIN = "*"

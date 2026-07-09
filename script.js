@@ -1,4 +1,31 @@
 /* ============================================================
+   HERO ROLE ROTATOR
+   ============================================================ */
+(function () {
+  const el = document.getElementById('roleRotator');
+  if (!el) return;
+
+  const roles = ['AI Engineer', 'ML Engineer', 'Software Engineer', 'Data Scientist'];
+  let i = 0;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  setInterval(() => {
+    i = (i + 1) % roles.length;
+    if (reduced) {
+      el.textContent = roles[i];
+      return;
+    }
+    el.classList.add('is-swapping');
+    setTimeout(() => {
+      el.textContent = roles[i];
+      el.classList.remove('is-swapping');
+    }, 300);
+  }, 2400);
+})();
+
+
+/* ============================================================
    THEME TOGGLE (light ↔ dark, persisted in localStorage)
    ============================================================ */
 (function () {
@@ -206,56 +233,6 @@
 
 
 /* ============================================================
-   CONTACT FORM → MAILTO
-   ============================================================ */
-(function () {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-
-  const TO_EMAIL = 'sahilshivajisawant@gmail.com';
-
-  function validate() {
-    let ok = true;
-    ['contact-name', 'contact-email', 'contact-message'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const empty = !el.value.trim();
-      const badEmail = id === 'contact-email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
-      const invalid = empty || badEmail;
-      el.classList.toggle('invalid', invalid);
-      el.setAttribute('aria-invalid', String(invalid));
-      if (invalid) ok = false;
-    });
-    return ok;
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const name    = document.getElementById('contact-name').value.trim();
-    const email   = document.getElementById('contact-email').value.trim();
-    const message = document.getElementById('contact-message').value.trim();
-
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body    = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    );
-
-    window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
-  });
-
-  // Clear invalid styling on input
-  form.querySelectorAll('.form-input').forEach(el => {
-    el.addEventListener('input', () => {
-      el.classList.remove('invalid');
-      el.removeAttribute('aria-invalid');
-    });
-  });
-})();
-
-
-/* ============================================================
    FOOTER YEAR
    ============================================================ */
 (function () {
@@ -277,119 +254,69 @@
   const badge   = document.getElementById('casperBadge');
   if (!toggle || !panel) return;
 
-  /* ── Knowledge base ─────────────────────────────────────── */
-  const KB = [
-    {
-      keys: ['hello', 'hi', 'hey', 'howdy', 'sup', 'hiya', 'greetings'],
-      reply: `Hey there! 🐱 I'm Casper — Ask me about Sahil's projects, work experience, skills, or how to get in touch. What would you like to know?`
-    },
-    {
-      keys: ['who are you', 'what are you', 'what can you do', 'help', 'about you', 'casper'],
-      reply: `I'm Casper 🐱 — named after Sahil's real cat! I'm a portfolio assistant that can tell you about Sahil's AI/ML projects, work history, tech skills, or education. Try asking: <em>"What projects has he built?"</em> or <em>"What's his tech stack?"</em>`
-    },
-    {
-      keys: ['project', 'built', 'build', 'made', 'github', 'portfolio', 'code', 'what has he'],
-      reply: `Sahil's featured projects:<br><br>
-<strong>01 · BOLT</strong> — Real-time ball tracking on a Unitree Go2 quadruped. YOLOv8 + Intel RealSense on Jetson, with Kalman-filter occlusion-aware re-ID.<br><br>
-<strong>02 · Buffalo Accident Risk</strong> — PPO reinforcement learning agent for emergency resource allocation across Buffalo, NY. Outperformed random baseline by ~9,000 reward points.<br><br>
-<strong>03 · DeepSpeech</strong> — Speech therapy assessment system. 1D Conv Autoencoder hits 96.89% accuracy; GPT-4 coaches users on articulation and stuttering.<br><br>
-<strong>04 · DermAI</strong> — Ensemble skin lesion classifier (ResNet50 + DenseNet + VGG-19 + EfficientNet) on HAM10000 — 94% precision vs 88% single-model baseline.<br><br>
-Want details on any of these?`
-    },
-    {
-      keys: ['bolt', 'robot', 'quadruped', 'yolov', 'realsense', 'jetson', 'ball track'],
-      reply: `<strong>BOLT</strong> is a real-time ball tracking system built for the Unitree Go2 quadruped robot. It runs YOLOv8 for detection and an Intel RealSense depth camera on an NVIDIA Jetson edge device. Sahil added occlusion-aware re-identification using a Kalman filter so the robot keeps tracking the ball even when it briefly disappears — important for smooth, reactive legged-robot motion. This was built during his Graduate Research Assistant role at UB.`
-    },
-    {
-      keys: ['buffalo', 'accident', 'risk', 'ppo', 'reinforcement', 'rl', 'emergency', 'dispatch', 'resource alloc'],
-      reply: `<strong>Buffalo Accident Risk & Resource Allocation</strong> uses Proximal Policy Optimization (PPO) to dynamically dispatch Police, EMS, and DOT resources across a 145-cell grid of Buffalo, NY. Trained on ~10,000 annual traffic incidents from Buffalo's Open Data Portal. The PPO agent scored ~793 episode reward vs. −8,170 for random and −47,500 for DQN. Built with PyTorch. Check it out on <a href="https://github.com/sahillarious/Buffalo-Accident-Risk-Prediction-Resource-Allocation" target="_blank" rel="noopener">GitHub ↗</a>`
-    },
-    {
-      keys: ['deepspeech', 'speech', 'stutter', 'therapy', 'articulation', 'librispeech', 'sep-28k'],
-      reply: `<strong>DeepSpeech</strong> is a speech therapy assessment system built with PyTorch. It uses a 1D Convolutional Autoencoder trained on LibriSpeech — flags faulty speech by measuring reconstruction error against a dynamic threshold, reaching 96.89% accuracy. A separate multi-model system on SEP-28k handles stuttering detection (blocks, prolongations, repetitions). A GPT-4 virtual coach deployed via Gradio gives personalised corrective feedback. GitHub: <a href="https://github.com/sahillarious/DeepSpeech" target="_blank" rel="noopener">DeepSpeech ↗</a>`
-    },
-    {
-      keys: ['dermai', 'derm', 'skin', 'lesion', 'ham10000', 'dermatology', 'ensemble', 'resnet', 'efficientnet'],
-      reply: `<strong>DermAI</strong> is an ensemble diagnostic system for skin disease classification across 7 lesion types using the HAM10000 dataset. It combines ResNet50, DenseNet121, VGG-19, and EfficientNet-B0 — reaching 94% precision vs. 88% for any single model. SMOTE handles severe class imbalance. GPT-4 generates interpretable, clinically-framed explanations for each prediction. GitHub: <a href="https://github.com/sahillarious/DermAI" target="_blank" rel="noopener">DermAI ↗</a>`
-    },
-    {
-      keys: ['experience', 'work', 'job', 'company', 'career', 'employ', 'arta', 'capgemini', 'internship'],
-      reply: `Sahil's work history:<br><br>
-<strong>AI Engineer @ Arta Support</strong> (Mar–May 2026) — Built <em>zcopilot-server</em>, a production multi-agent copilot with per-session state isolation over Socket.IO. Designed a SQLite→DynamoDB dual-write token accounting system and deployed across AWS us-west-1 + us-east-2 with Cognito auth and KMS-backed HMAC signing.<br><br>
-<strong>Graduate Research Assistant @ UB</strong> (Aug–Dec 2025) — The BOLT robotics project; real-time tracking on the Unitree Go2.<br><br>
-<strong>Analyst @ Capgemini</strong> (Dec 2022–May 2024) — Oracle EBS, SQL/PL-SQL development, and job automation with AppWorx in Mumbai.`
-    },
-    {
-      keys: ['arta', 'copilot', 'zcopilot', 'agent', 'agentic', 'multi-agent', 'socket'],
-      reply: `At <strong>Arta Support</strong>, Sahil built <em>zcopilot-server</em> — a production agentic copilot backend. Key details:<br>
-• Multi-agent orchestration with scope-aware reasoning<br>
-• Per-session state isolation using Socket.IO<br>
-• Token accounting: SQLite → DynamoDB dual-write for multi-region cost tracking<br>
-• Superadmin dashboard aggregating costs across regions<br>
-• Deployed in AWS us-west-1 (primary) and us-east-2 (secondary) with Cognito + KMS-backed HMAC`
-    },
-    {
-      keys: ['skill', 'tech', 'stack', 'language', 'framework', 'tool', 'know', 'use', 'familiar'],
-      reply: `Sahil's tech stack:<br><br>
-<strong>Languages:</strong> Python, SQL / PL-SQL<br>
-<strong>Agents & LLMs:</strong> LangGraph, LangChain, LlamaIndex, CrewAI, Pydantic AI, FastAPI<br>
-<strong>Retrieval & data:</strong> Neo4j, Qdrant, FAISS, Pinecone, DynamoDB, SQLite<br>
-<strong>Cloud & infra:</strong> AWS (SageMaker, Cognito, EC2, KMS), Docker, GitHub Actions, Oracle Cloud<br>
-<strong>ML & systems:</strong> RAG, GraphRAG, Multi-agent orchestration, YOLOv8, Computer Vision, Socket.IO, PySpark`
-    },
-    {
-      keys: ['langgraph', 'langchain', 'llamaindex', 'crewai', 'rag', 'retrieval', 'vector', 'embedding'],
-      reply: `Sahil works extensively with the LangGraph / LangChain ecosystem for agentic pipelines, LlamaIndex for retrieval, and CrewAI for multi-agent orchestration. On the retrieval side he's used Qdrant, FAISS, Pinecone, and Neo4j for graph-structured RAG. He's shipped these in production (Arta Support) and in research projects.`
-    },
-    {
-      keys: ['aws', 'cloud', 'docker', 'deploy', 'cognito', 'dynamo', 'sagemaker', 'kms', 'ec2'],
-      reply: `Sahil has production AWS experience: multi-region deployment (us-west-1 + us-east-2), Cognito for authentication, DynamoDB for persistent state, KMS for HMAC signing, and EC2 for hosting. He also uses Docker for containerisation, GitHub Actions for CI, and Oracle Cloud (free tier) for personal project hosting.`
-    },
-    {
-      keys: ['education', 'degree', 'university', 'study', 'school', 'ms', 'master', 'bachelor', 'ub', 'buffalo'],
-      reply: `<strong>MS in Artificial Intelligence</strong> — University at Buffalo, SUNY (Aug 2024 – Dec 2025). Coursework: Deep Learning, NLP, Computer Vision, Reinforcement Learning, LLMs, Robotics.<br><br><strong>BE in Electronics & Telecommunication</strong> — University of Mumbai (Aug 2018 – May 2022).`
-    },
-    {
-      keys: ['contact', 'email', 'reach', 'hire', 'available', 'open to', 'linkedin', 'connect', 'recruiter'],
-      reply: `Sahil is open to AI Engineer roles! Best ways to reach him:<br><br>
-📧 <a href="mailto:sahilshivajisawant@gmail.com">sahilshivajisawant@gmail.com</a><br>
-💼 <a href="https://www.linkedin.com/in/sahilsawant01/" target="_blank" rel="noopener">LinkedIn ↗</a><br>
-🐙 <a href="https://github.com/sahillarious" target="_blank" rel="noopener">GitHub ↗</a><br>
-📄 <a href="assets/Sahil%20Sawant%20Resume.pdf" download="Sahil Sawant Resume.pdf">Download Resume</a>`
-    },
-    {
-      keys: ['resume', 'cv', 'download'],
-      reply: `You can download Sahil's resume here: <a href="assets/Sahil%20Sawant%20Resume.pdf" download="Sahil Sawant Resume.pdf">📄 Sahil Sawant Resume.pdf</a>`
-    },
-    {
-      keys: ['location', 'where', 'based', 'buffalo', 'ny', 'new york', 'india', 'mumbai'],
-      reply: `Sahil is currently based in Buffalo, NY (originally from Mumbai, India). He's open to remote roles and on-site positions.`
-    },
-    {
-      keys: ['thank', 'thanks', 'awesome', 'great', 'cool', 'nice', 'good job', 'perfect', 'helpful'],
-      reply: `Happy to help! 🐱 Anything else you'd like to know about Sahil?`
-    },
-    {
-      keys: ['bye', 'goodbye', 'later', 'see you', 'cya', 'take care'],
-      reply: `Catch you later! 🐾 Feel free to come back if you have more questions.`
-    },
-  ];
+  /* ── Backend ────────────────────────────────────────────── */
+  // Casper talks to a Cloudflare Worker that calls the Claude API server-side
+  // (the API key never touches the browser). Deploy casper-worker/ and paste
+  // its URL here — see casper-worker/README.md.
+  const WORKER_URL = 'https://casper-worker.sahillarious.workers.dev';
 
-  const FALLBACK = [
-    `Hmm, I'm not sure about that one. 🐱 Try asking about Sahil's <strong>projects</strong>, <strong>experience</strong>, <strong>skills</strong>, or <strong>contact info</strong>!`,
-    `That's outside my knowledge base. 🐱 I know a lot about Sahil's work though — ask me about his projects or tech stack!`,
-    `I'm a portfolio assistant, not a general AI — so I'm best at questions about Sahil! Try: <em>"What's his tech stack?"</em> or <em>"Tell me about his experience."</em> 🐾`,
-  ];
-  let fallbackIdx = 0;
+  // Conversation history sent to the Worker (user/assistant turns only).
+  const history = [];
+  const MAX_TURNS = 12;
 
-  function findReply(text) {
-    const lower = text.toLowerCase();
-    for (const entry of KB) {
-      if (entry.keys.some(k => lower.includes(k))) return entry.reply;
+  async function askCasper(text) {
+    history.push({ role: 'user', content: text });
+    if (history.length > MAX_TURNS) history.splice(0, history.length - MAX_TURNS);
+
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history }),
+    });
+    if (!res.ok) throw new Error(`Casper backend returned ${res.status}`);
+
+    const data = await res.json();
+    const reply = (data && data.reply) ? data.reply
+      : "Sorry, I couldn't come up with a response.";
+    history.push({ role: 'assistant', content: reply });
+    return reply;
+  }
+
+  // Escape untrusted text before it touches the DOM.
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // Render the small subset of Markdown the model uses (bold, bullets, links,
+  // line breaks) into safe HTML. Everything is escaped first, so no injection.
+  function inlineMd(s) {
+    return escapeHtml(s)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener">$1</a>'
+      );
+  }
+
+  function renderReply(text) {
+    const lines = String(text).split('\n');
+    let html = '';
+    let inList = false;
+    for (const raw of lines) {
+      const line = raw.replace(/\s+$/, '');
+      const bullet = line.trim().match(/^[-*•]\s+(.*)$/);
+      if (bullet) {
+        if (!inList) { html += '<ul class="casper-list">'; inList = true; }
+        html += `<li>${inlineMd(bullet[1])}</li>`;
+      } else {
+        if (inList) { html += '</ul>'; inList = false; }
+        if (line.trim() !== '') html += `${inlineMd(line)}<br>`;
+      }
     }
-    const r = FALLBACK[fallbackIdx % FALLBACK.length];
-    fallbackIdx++;
-    return r;
+    if (inList) html += '</ul>';
+    return html.replace(/(<br>)+$/, '');
   }
 
   /* ── UI helpers ─────────────────────────────────────────── */
@@ -409,16 +336,43 @@ Want details on any of these?`
     return row;
   }
 
+  // Cat faces cycled through while Casper is "thinking".
+  const CAT_FACES = [
+    'assets/cat1.png',
+    'assets/cat12.png',
+    'assets/cat3.png',
+    'assets/cat4.png',
+    'assets/cat5.png',
+    'assets/cat6.png',
+  ];
+  CAT_FACES.forEach((src) => { const im = new Image(); im.src = src; }); // preload for smooth cycling
+  let typingTimer = null;
+
   function showTyping() {
     const row = document.createElement('div');
     row.className = 'casper-msg casper-msg-bot';
     row.id = 'casperTyping';
-    row.innerHTML = `<div class="casper-typing-indicator"><span></span><span></span><span></span></div>`;
+
+    const img = document.createElement('img');
+    img.className = 'casper-typing-cat';
+    img.alt = 'Casper is thinking…';
+    let i = Math.floor(Math.random() * CAT_FACES.length);
+    img.src = CAT_FACES[i];
+    row.appendChild(img);
     feed.appendChild(row);
     feed.scrollTop = feed.scrollHeight;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      typingTimer = setInterval(() => {
+        i = (i + 1) % CAT_FACES.length;
+        img.src = CAT_FACES[i];
+      }, 450);
+    }
   }
 
   function removeTyping() {
+    if (typingTimer) { clearInterval(typingTimer); typingTimer = null; }
     const el = document.getElementById('casperTyping');
     if (el) el.remove();
   }
@@ -448,7 +402,7 @@ Want details on any of these?`
   });
 
   /* ── Send message ───────────────────────────────────────── */
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
@@ -460,13 +414,20 @@ Want details on any of these?`
     sendBtn.disabled = true;
     showTyping();
 
-    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 600 + Math.random() * 400;
-    setTimeout(() => {
+    try {
+      const reply = await askCasper(text);
       removeTyping();
-      appendMsg(findReply(text), 'bot');
+      appendMsg(renderReply(reply), 'bot');
+    } catch (err) {
+      removeTyping();
+      appendMsg(
+        "I'm having trouble reaching my brain right now 🐱 — please try again in a moment, or email Sahil at <a href=\"mailto:sahilshivajisawant@gmail.com\">sahilshivajisawant@gmail.com</a>.",
+        'bot'
+      );
+    } finally {
       sendBtn.disabled = false;
       input.focus();
-    }, delay);
+    }
   });
 
   /* ── Trap focus inside panel when open ─────────────────── */
